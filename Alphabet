@@ -12,32 +12,37 @@ package c5enigma;
 public class Alphabet {
     
     private String charset = "";
+    private int length = charset.length();
     public static final String ALPHA_UP_SPACE = "ABCDEFGHIJKLMNOPRSTUWXYZ ";
     public static final String ALPHA_DOWN_SPACE = "ABCDEFGHIJKLMNOPRSTUWXYZ123456789 ";
     public static final String DIGITS = "123456789";
     
-    Alphabet(String charset) {
+    public Alphabet(String charset) {
         this.charset = charset;
     }
     
-    boolean isTextValid(String text) {
+    public boolean isTextValid(String text) {
         return text.matches("^[" + charset + "]$");
     }
     
-    String getCharset() {
+    public String getCharset() {
         return charset;
     }
 
-    int length() {
-        return charset.length();
+    public int length() {
+        return length;
     }
 
-    int indexOf(int ch) {
+    public int indexOf(int ch) {
         return charset.indexOf(ch);
     }
 
-    int charAt(int idx) {
-        return charset.charAt(idx);
+    public int charAt(int idx) {
+        int i = idx % length;
+        if(i < 0) {
+            i = length + idx;
+        }
+        return charset.charAt(Math.abs(idx) % charset.length());
     }
     
 }
