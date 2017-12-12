@@ -1,0 +1,61 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import c5enigma.Alphabet;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.Before;
+
+/**
+ *
+ * @author Student
+ */
+public class AlphabetTest {
+    
+    public AlphabetTest() {
+    }
+    
+    private Alphabet a;
+    
+    @Before
+    public void setUp() {
+        a = new Alphabet("ABCDEF");
+    }
+    
+    @Test  (expected = IllegalArgumentException.class)
+    public void emptyCharsetTest() {
+        a = new Alphabet("");
+    }
+    
+    @Test
+    public void isTextValidTest(String text) {
+        assertEquals(true, a.isTextValid(text));
+    }
+    
+//    @Test
+//    public String getCharsetTest() {
+//        return charset;
+//    }
+    
+    @Test
+    public void lengthTest() {
+        assertEquals(5, a.length());
+    }
+
+    @Test
+    public void indexOfTest(int ch) {
+        assertEquals(2, a.indexOf('C'));
+        assertEquals(-1, a.indexOf('X'));
+    }
+
+    @Test
+    public void charAtTest(int idx) {
+        assertEquals('C', a.indexOf(2));
+        assertEquals('C', a.indexOf(7));
+        assertEquals('E', a.indexOf(-1));
+    }
+    
+}
